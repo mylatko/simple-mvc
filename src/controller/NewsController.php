@@ -16,6 +16,11 @@ class NewsController extends BaseController
         ]);
     }
 
+    public function edit()
+    {
+        
+    }
+
     public function add()
     {
 //        echo "<pre>";
