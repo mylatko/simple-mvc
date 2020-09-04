@@ -1,0 +1,17 @@
+<?php
+
+/**
+ * @var string $title
+ */
+
+?>
+
+<?php include __DIR__ . "/../layout/header.phtml" ?>
+
+<div id="main">
+    <?php foreach($news as $item): ?>
+        <h2><?= $item->getTitle(); ?></h2>
+    <?php endforeach; ?>
+</div>
+
+<?php include __DIR__ . "/../layout/footer.phtml" ?>

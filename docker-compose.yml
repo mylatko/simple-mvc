@@ -25,11 +25,13 @@ services:
       - backend
     environment:
         ENV_DEV: ${ENV_DEV}
-        MYSQL_DB: ${MYSQL_DATABASE}
+        MYSQL_DATABASE: ${MYSQL_DATABASE}
         MYSQL_USER: ${MYSQL_USER}
         MYSQL_PASSWORD: ${MYSQL_PASSWORD}
         MYSQL_HOST: ${MYSQL_HOST}
         MYSQL_PORT: ${MYSQL_PORT}
+        XDEBUG_CONFIG: "remote_enable=1"
+        PHP_IDE_CONFIG: "serverName=Docker"
 
   mysql:
     image: mysql:5.7
