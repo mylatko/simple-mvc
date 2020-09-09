@@ -11,7 +11,6 @@ try {
     foreach ($routes as $pattern => $controllerAction) {
         preg_match($pattern, $route, $matches);
         if ($matches) {
-//        var_dump($pattern);
             $isRouteFound = true;
             break;
         }
@@ -26,8 +25,9 @@ try {
     $actionName = $controllerAction[1];
 
     if(!empty($matches)) {
+        array_shift($matches);
         $controller = new $controllerName();
-        $controller->$actionName($matches[1]);
+        $controller->$actionName(...$matches);
         return;
     }
 

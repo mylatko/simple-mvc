@@ -4,7 +4,7 @@ namespace MVC\model;
 
 use MVC\services\Db;
 
-abstract class ActiveRecordEntity
+abstract class ActiveRecordEntity implements \JsonSerializable
 {
     /** @var int */
     protected $id;
@@ -142,7 +142,7 @@ abstract class ActiveRecordEntity
     }
 
     /**
-     *
+     * Delete row by id
      */
     public function delete()
     {
@@ -152,5 +152,34 @@ abstract class ActiveRecordEntity
         $db->query($sql);
 
         $this->id = null;
+    }
+
+    /**
+     * Find row by column-value
+     * @param $columnName
+     * @param $value
+     * @return $this|null
+     */
+    public function findOneByColumn($columnName, $value):? self
+    {
+        $sql = "SELECT * FROM `" . static::getTableName() . "` WHERE `" . $columnName . "` = :value LIMIT 1";
+
+        $db = DB::getInstance();
+        $result = $db->query($sql, [
+            ':value' => $value
+        ], static::class);
+
+        if ($result === [])
+            return null;
+
+        return $result[0];
+    }
+
+    /**
+     * @return mixed|void
+     */
+    public function jsonSerialize()
+    {
+        return $this->getMappedProperties();
     }
 }

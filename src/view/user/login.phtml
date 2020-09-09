@@ -1,0 +1,29 @@
+<?php
+
+/**
+ * @var string $title
+ */
+
+?>
+
+<?php include __DIR__ . "/../layout/header.phtml" ?>
+
+<div id="main">
+    <h1>Registration</h1>
+    <?php if(!empty($error)) : ?>
+        <div style="color: red;"><?= $error ?></div>
+    <?php endif; ?>
+    <form action="/user/login" method="post">
+        <label for="email">
+            Email
+            <input type="text" name="email" value="<?= $_POST['email'] ?>">
+        </label><br>
+        <label for="password">
+            Password
+            <input type="password" name="password" value="<?= $_POST['password'] ?>">
+        </label><br>
+        <input type="submit" value="Login">
+    </form>
+</div>
+
+<?php include __DIR__ . "/../layout/footer.phtml" ?>
